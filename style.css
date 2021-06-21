@@ -1,0 +1,119 @@
+
+*, *::after, *::before{
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    /* gives background a linear gradient from left to right */
+    background: linear-gradient(to right, hsl(200, 100%, 50%), hsl(175, 100%, 50%));;
+    /* serts the display property of the body to be flexible */
+    display: flex;
+    /* sets the clock horizontally in the centre of the dom */
+    justify-content: center;
+    /* sets the clock vertically in the centre of the dom */
+    align-items: center;
+    /* sets min height */
+    min-height: 100vh;
+    /* removes the scroll bar */
+    overflow: hidden;
+
+}
+
+/* clock styling */
+.clock{
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 50%;
+    border: 2px solid black;
+    position: relative;
+}
+
+/* clock number styling */
+.clock .number{
+    /* sets default rotation to 0 */
+    --rotation: 0;
+    /* positions numbers absolutely on the clock face */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* transform propery set to rotate taking a javascript variable as input */
+    transform: rotate(var(--rotation));
+    font-size: 1.5rem;
+}
+
+/* sets javascript variable to evenly spaced values around the perimeter of the clock face */
+.clock .number1{--rotation: 30deg}
+.clock .number2{--rotation: 60deg}
+.clock .number3{--rotation: 90deg}
+.clock .number4{--rotation: 120deg}
+.clock .number5{--rotation: 150deg}
+.clock .number6{--rotation: 180deg}
+.clock .number7{--rotation: 210deg}
+.clock .number8{--rotation: 240deg}
+.clock .number9{--rotation: 270deg}
+.clock .number10{--rotation: 300deg}
+.clock .number11{--rotation: 330deg}
+
+.clock .hand{
+    --rotation: 0;
+    position: absolute;
+    /* sets the hand to the centre of the clock face */
+    bottom: 50%;
+    left: 50%;
+    /* gives hand a white border */
+    border: 1px solid white;
+    /* sets border radius to top left and top right */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* ensures hand always stays on top of numbers */
+    z-index: 10;
+    /* forces rotation from the bottom of the hand */
+    transform-origin: bottom;
+    /* adjusts the centre position of the hand to account for the width */
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+}
+
+/* inserts centre of the clock into the dom */
+.clock::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    /* always shows on top of hands */
+    z-index: 11;
+    width: 15px;
+    height: 15px;
+    /* positions in centre of clock */
+    top: 50%;
+    left: 50%;
+    /* adjusts position to centre accounting for the width */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.clock .hand.second{
+    /* sets width and height of second hand */
+    width: 3px;
+    height: 45%;
+    background-color: red;
+}
+.clock .hand.minute{
+    /* sets width and height of minute hand */
+    width: 7px;
+    height: 40%;
+    background-color: black;
+}
+.clock .hand.hour{
+    /* sets width and height of hour hand */
+    width: 10px;
+    height: 35%;
+    background-color: black;
+}
+
+.attribution{
+    position: relative;
+}
+
+/* Marty Tyndall */
